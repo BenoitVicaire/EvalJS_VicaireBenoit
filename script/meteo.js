@@ -56,11 +56,10 @@ buton_load.addEventListener("click",()=>{
     bouton(buton_load);
     getMeteoJson()
     .then(data=>{
-        console.log(data.fcst_day_0)
-        addInfo(id_title0,data.current_condition.condition)
-        addInfo(id_title1,`Temp actuel: ${data.current_condition.tmp}°C`)
-        addInfo(id_title2,`Temp max: ${data.fcst_day_0.tmax}°C`)
-        addInfo(id_title3,`Temp min: ${data.fcst_day_0.tmin}°C`)
+        addInfo(id_title0,data.current_condition.condition);
+        addInfo(id_title1,`Temp actuel: ${data.current_condition.tmp}°C`);
+        addInfo(id_title2,`Temp max: ${data.fcst_day_0.tmax}°C`);
+        addInfo(id_title3,`Temp min: ${data.fcst_day_0.tmin}°C`);
         
     })
 })

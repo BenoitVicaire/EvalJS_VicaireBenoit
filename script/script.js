@@ -88,3 +88,121 @@ const usersXeno = [{
         longitude :  1.43222
     }
 ];
+
+const tabData =[];
+tabData.push(usersHuman,usersPet,usersXeno);
+
+function cardHuman(object){
+    const article = document.createElement("article");
+    const title = document.createElement("h2");
+    title.textContent=object.name;
+    const image = document.createElement("img");
+    image.setAttribute("src",object.avatar);
+    image.setAttribute("alt",`Portrait de ${object.name}`);
+    const paragraphe = document.createElement("p");
+    paragraphe.textContent=` Age: ${object.age}, mail: ${object.email}`;
+    article.appendChild(title);
+    article.appendChild(image);
+    article.appendChild(paragraphe);
+    article.setAttribute("class","card");
+    return article;
+}
+
+function cardPet(object){
+    const article = document.createElement("article");
+    const title= document.createElement("h2");
+    title.textContent=object.name;
+    const image = document.createElement("img");
+    image.setAttribute("src",object.avatar);
+    image.setAttribute("alt",`Portrait de ${object.name}`);
+    const paragraphe = document.createElement("p");
+    paragraphe.textContent=` Age: ${object.age}, Espèce: ${object.espece}, Propriétaire : ${object.propriétaire}`;
+    article.appendChild(title);
+    article.appendChild(image);
+    article.appendChild(paragraphe);
+    article.setAttribute("class","card");
+    return article;
+}
+
+function cardXeno(object){
+    const article = document.createElement("article");
+    const title= document.createElement("h2");
+    title.textContent=object.name;
+    const image = document.createElement("img");
+    image.setAttribute("src",object.avatar);
+    image.setAttribute("alt",`Portrait de ${object.name}`);
+    const paragraphe = document.createElement("p");
+    paragraphe.textContent=` Age: ${object.age}, Espèce: ${object.espece}, Niveau de menace :  : ${object.menace}`;
+    article.appendChild(title);
+    article.appendChild(image);
+    article.appendChild(paragraphe);
+    article.setAttribute("class","card");
+    return article;
+}
+
+// Profil prend une tab, fait une card pour chaque element selon le type, et return une cardList
+function profil(tab){
+    const cardList=[];
+    for(let i=0;i<tab.length;i++){
+        if(tab[i].type=="humain"){
+            cardList.push(cardHuman(tab[i]));
+        }else if(tab[i].type=="animal de compagnie"){
+            cardList.push(cardPet(tab[i]));
+        }else if(tab[i].type=="Xeno"){
+            cardList.push(cardXeno(tab[i]));
+        }else{
+            console.log("Type de profil non Existant");
+        }
+        
+    }
+    return cardList;
+}
+// // test des fonction profil et cardXXXX
+// for(let element of tabData){
+//     console.log(profil(element));
+// }
+// // fin de test
+
+// Ajouter les article a la section profil:
+const section_profil = document.querySelector("section")
+
+// // test ajout a la section profil :
+// section_profil.appendChild(cardHuman(usersHuman[0]));
+// // fin de test
+
+// function profillAll, prend en param un tab, le parcours, appelle la fct profil sur chaque elem, et  l'ajoute a la section profils
+
+function profillAll(main_tab){
+    const profils = document.getElementsByClassName("profils")[0];
+    for(let element of main_tab){
+        const cardTab=profil(element);
+        for(let sub_element of cardTab){
+            profils.appendChild(sub_element);
+        }
+    }
+}
+profillAll(tabData);
+
+// LEAFLET
+let map = L.map('map').setView([43.604429, 1.443812], 14);
+L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    maxZoom: 19,
+    attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+}).addTo(map);
+
+// function markerProfil
+function markerProfil(object){
+    const myIcon = L.icon({
+    iconUrl: object.icon,
+    iconSize: [50,83],
+    iconAnchor: [25,83]})
+    L.marker([object.latitude,object.longitude],{icon:myIcon}).addTo(map);
+};
+// markerProfil(usersHuman[0]);
+
+// Ajoute des marker de toutes les card :
+for(let element of tabData){
+    for(let sub_element of element){
+        markerProfil(sub_element);
+    }
+}
