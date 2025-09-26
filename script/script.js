@@ -150,6 +150,7 @@ function profil(tab){
             cardList.push(cardPet(tab[i]));
         }else if(tab[i].type=="Xeno"){
             cardList.push(cardXeno(tab[i]));
+            // filthy xenos, for the emperor you shall be smited
         }else{
             console.log("Type de profil non Existant");
         }
