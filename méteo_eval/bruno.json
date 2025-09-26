@@ -1,0 +1,9 @@
+{
+  "version": "1",
+  "name": "méteo_eval",
+  "type": "collection",
+  "ignore": [
+    "node_modules",
+    ".git"
+  ]
+}
