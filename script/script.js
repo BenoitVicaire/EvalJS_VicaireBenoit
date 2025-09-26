@@ -32,7 +32,7 @@ const usersHuman = [{
 
 const usersPet = [{
         type: "animal de compagnie",
-        espece: "chien",
+        espece: "Chien",
         name: "Rox",
         age: 7,
         propriétaire: "John Doe",
@@ -43,7 +43,7 @@ const usersPet = [{
     },
     {
         type: "animal de compagnie",
-        espece: "renard",
+        espece: "Renard",
         name: "Roukie",
         age: 300,
         propriétaire: "Le Vénérable",
@@ -100,7 +100,7 @@ function cardHuman(object){
     image.setAttribute("src",object.avatar);
     image.setAttribute("alt",`Portrait de ${object.name}`);
     const paragraphe = document.createElement("p");
-    paragraphe.textContent=` Age: ${object.age}, mail: ${object.email}`;
+    paragraphe.textContent=` ${object.age} - ${object.email}`;
     article.appendChild(title);
     article.appendChild(image);
     article.appendChild(paragraphe);
@@ -116,7 +116,7 @@ function cardPet(object){
     image.setAttribute("src",object.avatar);
     image.setAttribute("alt",`Portrait de ${object.name}`);
     const paragraphe = document.createElement("p");
-    paragraphe.textContent=` Age: ${object.age}, Espèce: ${object.espece}, Propriétaire : ${object.propriétaire}`;
+    paragraphe.textContent=` ${object.age} - ${object.espece}- ${object.propriétaire}`;
     article.appendChild(title);
     article.appendChild(image);
     article.appendChild(paragraphe);
@@ -132,7 +132,7 @@ function cardXeno(object){
     image.setAttribute("src",object.avatar);
     image.setAttribute("alt",`Portrait de ${object.name}`);
     const paragraphe = document.createElement("p");
-    paragraphe.textContent=` Age: ${object.age}, Espèce: ${object.espece}, Niveau de menace :  : ${object.menace}`;
+    paragraphe.textContent=` ${object.age} ans - ${object.espece}, ${object.menace}`;
     article.appendChild(title);
     article.appendChild(image);
     article.appendChild(paragraphe);

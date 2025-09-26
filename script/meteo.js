@@ -33,10 +33,19 @@ document.body.addEventListener("mouseup", ()=>{
 
 // fetch de l'api
 const getMeteoJson= async()=>{
-    return await fetch("https://prevision-meteo.ch/services/json/toulouse")
+    try{
+        return await fetch("https://prevision-meteo.ch/services/json/toulouse")
     .then(response =>{
+        // response.ok = tout les status de 200 a 299 (donc !responses.ok = la requetes a eu un probleme)
+        if(!response.ok){
+            throw new Error(`Erreur : ${response.status}`)
+        }
         return response.json();
     })
+    }catch(error){
+        console.log("erreur", error);
+    }
+    
 }
 // organisation de la div info:
 
